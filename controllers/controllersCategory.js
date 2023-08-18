@@ -94,43 +94,42 @@ const categoriesIncomesControllers = {
             error: error
         })
     },
-}
-    module.exports = categoriesIncomesControllers 
-    
-//     addMultiplesIncomes: async (req, res) => {
-//         let error = []
-//         let incomes = []
-//         for (let income of req.body.data) {
-//         try {
-//                 let verifyIncome = await Incomes.find({ name: { $regex: income.name, $options: "i" } })
-//                 if (verifyIncome.length == 0) {
-//                     let dataIncome = {
-//                         amount: income.amount,
-//                         name: income.name,
-//                         date: income.date,
-                        
-//                     }
-//                     await new Incomes({
-//                         ...dataIncome
-//                     }).save()
-//                     income.push(dataIncome)
-//                 } else {
-//                     error.push({
-//                         name: income.name,
-//                         result: "Ya existe en la base de datos con el Id: " + verifyIncome[0]._id
-//                     })
-//                 }
 
-//             }
-//          catch (err) { error.push({name: income.name, err})}
-//         }
-//         res.json({
-//             response: error.length > 0 && incomes.length === 0 ? "Error" : incomes,
-//             success: error.length > 0 ? (incomes.length > 0 ? "Warning" : false) : true,
-//             error: error
-//         })
-//     }
-// }
+    
+    addMultiplesCategoriesIncomes: async (req, res) => {
+        let error = []
+        let CategoriesIncomes = []
+        for (let CategoryIncome of req.body.data) {
+        try {
+                let verifyCategoryIncome = await categoriesincomes.find({ name: { $regex: CategoryIncome.name, $options: "i" } })
+                if (verifyCategoryIncome.length == 0) {
+                    let dataCategoryIncome = {
+                        title: categoriesincomes.title,
+                        
+                        
+                    }
+                    await new categoriesincomes({
+                        ...dataCategoryIncome
+                    }).save()
+                    CategoryIncome.push(dataCategoryIncome)
+                } else {
+                    error.push({
+                        title: categorriesincomes.title,
+                        result: "Ya existe en la base de datos con el Id: " + verifyCategoryIncome[0]._id
+                    })
+                }
+
+            }
+         catch (err) { error.push({name: CategoryIncome.name, err})}
+        }
+        res.json({
+            response: error.length > 0 && categoriesIncomes.length === 0 ? "Error" : categoriesIncomes,
+            success: error.length > 0 ? (categoriesIncomes.length > 0 ? "Warning" : false) : true,
+            error: error
+        })
+    }
+}
+module.exports = categoriesIncomesControllers 
     
 
 
